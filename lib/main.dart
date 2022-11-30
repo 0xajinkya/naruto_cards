@@ -6,8 +6,16 @@ void main() {
   ));
 }
 
-class NarutoCard extends StatelessWidget {
+class NarutoCard extends StatefulWidget {
   const NarutoCard({Key? key}) : super(key: key);
+
+  @override
+  State<NarutoCard> createState() => _NarutoCardState();
+}
+
+class _NarutoCardState extends State<NarutoCard> {
+
+  int popularity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,18 @@ class NarutoCard extends StatelessWidget {
         backgroundColor: Colors.grey[800],
         elevation: 0,
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+            Icons.add,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.grey[100],
+        onPressed: (){
+          setState(() {
+            popularity++;
+          });
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
         child: Column(
@@ -27,7 +47,7 @@ class NarutoCard extends StatelessWidget {
             const Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage('Naruto.webp'),
-                radius: 100,
+                radius: 50,
               ),
             ),
             Column(
@@ -64,6 +84,26 @@ class NarutoCard extends StatelessWidget {
                   ]
               ),
             Divider(height: 30, color: Colors.grey[200]),
+            Container(
+              child: Row(
+                children: [
+                  Text(
+                    'Popularity',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(width: 305,),
+                  Text(
+                    '$popularity', // Similar As '${popularity}'
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  )
+                ],
+              ),
+            ),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Column(
@@ -114,3 +154,4 @@ class NarutoCard extends StatelessWidget {
     );
   }
 }
+
